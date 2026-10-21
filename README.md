@@ -124,15 +124,13 @@ Uninstalling leaves your settings in `~/.config/daypeek/` and the cache in
 
 ### Which platforms get a ready-made binary?
 
-| Platform | daypeek v0.1.0 |
+| Platform | daypeek v0.2.0 |
 | --- | --- |
 | macOS, Apple Silicon (M1 and later) | Prebuilt binary (installs in seconds) |
-| macOS, Intel | Built from source by Homebrew (installs Rust for the build; takes a few minutes) |
-| Linux x86_64 | Prebuilt binary; needs glibc 2.39+ (Ubuntu 24.04, Debian 13, Fedora 40 or newer) |
-| Linux ARM64 | Built from source by Homebrew |
+| macOS, Intel | Prebuilt binary (installs in seconds) |
+| Linux x86_64 | Prebuilt static binary; runs on any distribution |
+| Linux ARM64 | Built from source by Homebrew (installs Rust for the build; takes a few minutes) |
 
-The next daypeek release adds prebuilt Intel Mac binaries and a static Linux
-binary that runs on any distribution, and this formula will switch to them.
 Every download is pinned to a SHA-256 checksum, so Homebrew refuses a file
 that doesn't match the release.
 
@@ -144,9 +142,9 @@ that doesn't match the release.
   or run `eval "$(brew shellenv)"`.
 - **Something doesn't show up** (a calendar, an app's tasks): run
   `daypeek providers`. It lists every source and what each one still needs.
-- **Linux: `GLIBC_2.39 not found`**: your distribution is older than the v0.1.0
-  binary supports. Install with `cargo install --git https://github.com/Jherin89/daypeek`
-  for now; the next release's static build fixes this.
+- **Linux: `GLIBC_2.39 not found`**: you still have daypeek 0.1.0. Run
+  `brew update && brew upgrade daypeek`; 0.2.0 and later are static builds that
+  run on any distribution.
 
 ### About this tap
 
