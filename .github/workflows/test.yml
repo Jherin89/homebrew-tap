@@ -1,0 +1,38 @@
+name: brew test
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  formula:
+    name: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-14, macos-15-intel, ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: Homebrew/actions/setup-homebrew@main
+      - name: Tap this checkout
+        run: |
+          if ! brew tap | grep -qx 'jherin89/tap'; then
+            brew tap jherin89/tap "$GITHUB_WORKSPACE"
+          fi
+          brew tap-info jherin89/tap
+      - name: Style and audit
+        run: |
+          brew style jherin89/tap/tidy
+          brew audit --strict --online jherin89/tap/tidy || brew audit --strict jherin89/tap/tidy
+      - name: Install
+        run: brew install jherin89/tap/tidy
+      - name: Test
+        run: |
+          brew test jherin89/tap/tidy
+          tidy --version
+          file "$(brew --prefix)/bin/tidy" || true
