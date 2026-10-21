@@ -10,11 +10,12 @@ permissions:
 
 jobs:
   formula:
-    name: ${{ matrix.os }}
+    name: ${{ matrix.formula }} (${{ matrix.os }})
     strategy:
       fail-fast: false
       matrix:
         os: [macos-14, macos-15-intel, ubuntu-latest]
+        formula: [daypeek, tidy]
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v7
@@ -27,12 +28,12 @@ jobs:
           brew tap-info jherin89/tap
       - name: Style and audit
         run: |
-          brew style jherin89/tap/tidy
-          brew audit --strict --online jherin89/tap/tidy || brew audit --strict jherin89/tap/tidy
+          brew style jherin89/tap/${{ matrix.formula }}
+          brew audit --strict jherin89/tap/${{ matrix.formula }}
       - name: Install
-        run: brew install jherin89/tap/tidy
+        run: brew install jherin89/tap/${{ matrix.formula }}
       - name: Test
         run: |
-          brew test jherin89/tap/tidy
-          tidy --version
-          file "$(brew --prefix)/bin/tidy" || true
+          brew test jherin89/tap/${{ matrix.formula }}
+          "$(brew --prefix)/bin/${{ matrix.formula }}" --version
+          file "$(brew --prefix)/bin/${{ matrix.formula }}"

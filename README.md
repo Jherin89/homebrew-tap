@@ -1,4 +1,53 @@
-# Homebrew tap for daypeek
+# Jherin89/homebrew-tap
+
+Homebrew formulae for command-line tools by [Jordan Herin](https://github.com/Jherin89).
+
+| Formula | Install | What it is |
+| --- | --- | --- |
+| [`daypeek`](Formula/daypeek.rb) | `brew install jherin89/tap/daypeek` | One-screen terminal dashboard: calendar, tasks from 10 apps, weather. [Details below](#daypeek). |
+| [`tidy`](Formula/tidy.rb) | `brew install jherin89/tap/tidy` | Safe, rules-driven Downloads folder organizer. Dry-run by default, Trash not delete, one-command undo. [Details below](#tidy). |
+
+Every formula pins its downloads to SHA-256 checksums, and CI ([`test.yml`](.github/workflows/test.yml)) runs `brew style`, `brew audit --strict`, `brew install` and `brew test` for each one on macOS (Apple Silicon and Intel) and Linux.
+
+## tidy
+
+[tidy](https://github.com/Jherin89/tidy) cleans up a messy Downloads folder using rules you can read and edit. It shows a preview first, sends removals to the Trash (never a permanent delete), never overwrites, and `tidy undo` reverses the last run.
+
+1. Install it:
+
+   ```sh
+   brew install jherin89/tap/tidy
+   ```
+
+2. Preview what it would do. This is read-only:
+
+   ```sh
+   tidy
+   ```
+
+3. Apply the plan, and undo it if you change your mind:
+
+   ```sh
+   tidy --apply
+   tidy undo
+   ```
+
+4. Optional: sort new downloads automatically at login (macOS):
+
+   ```sh
+   tidy watch --install
+   ```
+
+| Platform | tidy v0.2.0 |
+| --- | --- |
+| macOS, Apple Silicon and Intel | Prebuilt universal binary |
+| Linux x86_64 and ARM64 | Prebuilt static (musl) binary, any distribution |
+
+Update with `brew upgrade tidy`. To uninstall, run `tidy watch --uninstall` first if you set up the watcher, then `brew uninstall tidy`. Full guide: [tidy README](https://github.com/Jherin89/tidy#readme).
+
+The tidy formula is regenerated after each release with [`scripts/bump-homebrew.sh`](https://github.com/Jherin89/tidy/blob/main/scripts/bump-homebrew.sh), which reads the release's `.sha256` files. Neither repository stores a token.
+
+## daypeek
 
 [daypeek](https://github.com/Jherin89/daypeek) is a fast, one-screen dashboard
 for your terminal: today's calendar, your tasks from 10 apps (Todoist, Things,
@@ -8,7 +57,7 @@ todo.txt, Markdown), and the weather, in one quick command.
 This repository is its [Homebrew](https://brew.sh) tap: the recipe Homebrew
 uses to install and update daypeek.
 
-## Install
+### Install
 
 You need Homebrew first. If `brew --version` doesn't print a version, install
 it from [brew.sh](https://brew.sh) (one command), then open a new terminal.
@@ -41,7 +90,7 @@ it from [brew.sh](https://brew.sh) (one command), then open a new terminal.
    daypeek
    ```
 
-## Use it
+### Use it
 
 | Command | What you get |
 | --- | --- |
@@ -62,7 +111,7 @@ echo 'daypeek --compact' >> ~/.zshrc
 Full guides: [setup](https://github.com/Jherin89/daypeek/blob/main/docs/SETUP.md) ·
 [usage](https://github.com/Jherin89/daypeek/blob/main/docs/USAGE.md).
 
-## Update and uninstall
+### Update and uninstall
 
 ```sh
 brew update && brew upgrade daypeek   # get the newest version
@@ -73,7 +122,7 @@ brew untap jherin89/tap               # forget this tap
 Uninstalling leaves your settings in `~/.config/daypeek/` and the cache in
 `~/.cache/daypeek/`; delete those folders too if you want a clean slate.
 
-## Which platforms get a ready-made binary?
+### Which platforms get a ready-made binary?
 
 | Platform | daypeek v0.1.0 |
 | --- | --- |
@@ -87,7 +136,7 @@ binary that runs on any distribution, and this formula will switch to them.
 Every download is pinned to a SHA-256 checksum, so Homebrew refuses a file
 that doesn't match the release.
 
-## Troubleshooting
+### Troubleshooting
 
 - **`brew: command not found`**: install Homebrew from [brew.sh](https://brew.sh),
   then open a new terminal window.
@@ -99,7 +148,7 @@ that doesn't match the release.
   binary supports. Install with `cargo install --git https://github.com/Jherin89/daypeek`
   for now; the next release's static build fixes this.
 
-## About this tap
+### About this tap
 
 - Formula: [`Formula/daypeek.rb`](Formula/daypeek.rb)
 - Bugs and ideas for daypeek itself: [daypeek issues](https://github.com/Jherin89/daypeek/issues)
