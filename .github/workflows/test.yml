@@ -30,6 +30,10 @@ jobs:
         run: |
           brew style jherin89/tap/${{ matrix.formula }}
           brew audit --strict jherin89/tap/${{ matrix.formula }}
+      - name: Remove conflicting formulae preinstalled on the runner
+        if: matrix.formula == 'tidy'
+        # GitHub's macOS images ship tidy-html5, which also installs bin/tidy.
+        run: brew uninstall --ignore-dependencies --force tidy-html5 || true
       - name: Install
         run: brew install jherin89/tap/${{ matrix.formula }}
       - name: Test

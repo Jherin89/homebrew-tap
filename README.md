@@ -43,6 +43,8 @@ Every formula pins its downloads to SHA-256 checksums, and CI ([`test.yml`](.git
 | macOS, Apple Silicon and Intel | Prebuilt universal binary |
 | Linux x86_64 and ARM64 | Prebuilt static (musl) binary, any distribution |
 
+If you already have Homebrew's `tidy-html5` (HTML Tidy), both formulae install a `tidy` command, so Homebrew will refuse to install this one alongside it. Run `brew unlink tidy-html5` (or uninstall it) first.
+
 Update with `brew upgrade tidy`. To uninstall, run `tidy watch --uninstall` first if you set up the watcher, then `brew uninstall tidy`. Full guide: [tidy README](https://github.com/Jherin89/tidy#readme).
 
 The tidy formula is regenerated after each release with [`scripts/bump-homebrew.sh`](https://github.com/Jherin89/tidy/blob/main/scripts/bump-homebrew.sh), which reads the release's `.sha256` files. Neither repository stores a token.
