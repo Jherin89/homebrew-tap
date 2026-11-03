@@ -6,23 +6,23 @@ class Tidy < Formula
   # One universal (arm64 + x86_64) archive serves both Mac architectures.
   on_macos do
     on_arm do
-      url "https://github.com/Jherin89/tidy/releases/download/v0.3.0/tidy-0.3.0-universal-apple-darwin.tar.gz"
-      sha256 "5012ad4191ed4fd0cda0b9d8643fdb8fc08b2f898bfb7916af52eb7240b78faf"
+      url "https://github.com/Jherin89/tidy/releases/download/v0.4.0/tidy-0.4.0-universal-apple-darwin.tar.gz"
+      sha256 "808dbbb30f900e32ab34b1cf763fad9db69f7925128fdbc94c69db004886efd4"
     end
     on_intel do
-      url "https://github.com/Jherin89/tidy/releases/download/v0.3.0/tidy-0.3.0-universal-apple-darwin.tar.gz"
-      sha256 "5012ad4191ed4fd0cda0b9d8643fdb8fc08b2f898bfb7916af52eb7240b78faf"
+      url "https://github.com/Jherin89/tidy/releases/download/v0.4.0/tidy-0.4.0-universal-apple-darwin.tar.gz"
+      sha256 "808dbbb30f900e32ab34b1cf763fad9db69f7925128fdbc94c69db004886efd4"
     end
   end
 
   on_linux do
     on_intel do
-      url "https://github.com/Jherin89/tidy/releases/download/v0.3.0/tidy-0.3.0-x86_64-unknown-linux-musl.tar.gz"
-      sha256 "01d1354bbff061759b22b9cd07673fbbbef2e579b7d6bec4529116babfdabcb3"
+      url "https://github.com/Jherin89/tidy/releases/download/v0.4.0/tidy-0.4.0-x86_64-unknown-linux-musl.tar.gz"
+      sha256 "f61520ff919d5068886075ce707bb4b7382650a0462706e294145f87a7e12ab3"
     end
     on_arm do
-      url "https://github.com/Jherin89/tidy/releases/download/v0.3.0/tidy-0.3.0-aarch64-unknown-linux-musl.tar.gz"
-      sha256 "0c07fae552efab0bdd688040827b2fffda85dc1c089341c5bf8fc55ae51c6a17"
+      url "https://github.com/Jherin89/tidy/releases/download/v0.4.0/tidy-0.4.0-aarch64-unknown-linux-musl.tar.gz"
+      sha256 "ff12dd1b3353a3adbff328e110866559b9ae61cda0f972caa020c0025525699b"
     end
   end
 
